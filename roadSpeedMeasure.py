@@ -2,10 +2,12 @@
 import os
 import sys
 import cv2
+from libraries.background import BackGround
 
 # By default the input is the web cam
 # If otherwise stated the input is a video in location:
 if __name__ == '__main__':
+    myBackGround = BackGround()
     videoAddress = os.getenv('HOME') +'/trafficFlow/trialVideos'
     DEFAULT_WEBCAM_ADDRESS = 1
     videoInput = DEFAULT_WEBCAM_ADDRESS
@@ -22,11 +24,17 @@ if __name__ == '__main__':
         miCamara = cv2.VideoCapture(videoInput)
 
     while True:
-        succesfullyRead, frameFlujo = miCamara.read()
+        succesfullyRead, flowFrame = miCamara.read()
         if videoInput != DEFAULT_WEBCAM_ADDRESS:
-            frameFlujo = cv2.resize(frameFlujo,(320,240))
+            flowFrame = cv2.resize(flowFrame,(320,240))
 
-        cv2.imshow('Monitor',frameFlujo)
+        rectangulos = myBackGround.getForeground(flowFrame)
+
+        for rectangulo in rectangulos:
+            print(rectangulo)
+            flowFrame = cv2.rectangle(flowFrame, rectangulo[0], rectangulo[1], (255,255,255), 1)
+        #flowFrame = cv2.rectangle(flowFrame, (0,0), (25,25), (255,255,255), 1)
+        cv2.imshow('Monitor',flowFrame)
 
         ch = 0xFF & cv2.waitKey(1)
         if ch == ord('q'):
