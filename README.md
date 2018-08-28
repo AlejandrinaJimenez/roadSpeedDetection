@@ -3,3 +3,5 @@ In this repository we build a simple method for measuring speed of moving object
 
 
 This software is designed to run on Raspberry Pi, with python and opencv 3.*
+
+The file install.py will set up a rectangle to limit the road and set departure and arrival points for the measurement of speed
