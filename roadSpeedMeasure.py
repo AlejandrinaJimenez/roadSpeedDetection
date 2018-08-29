@@ -31,7 +31,7 @@ if __name__ == '__main__':
         rectangulos = myBackGround.getForeground(flowFrame)
 
         for rectangulo in rectangulos:
-            print(rectangulo)
+            #print(rectangulo)
             flowFrame = cv2.rectangle(flowFrame, rectangulo[0], rectangulo[1], (255,255,255), 1)
         #flowFrame = cv2.rectangle(flowFrame, (0,0), (25,25), (255,255,255), 1)
         cv2.imshow('Monitor',flowFrame)

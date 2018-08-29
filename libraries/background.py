@@ -13,7 +13,7 @@ class BackGround():
         fgmask = self.fgbg.apply(imagenActualBS)
         #fgmask = cv2.morphologyEx(fgmask, cv2.MORPH_OPEN, self.kernel)
 
-        _, contours, _ = cv2.findContours(fgmask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_TC89_L1)
+        _, contours, _ = cv2.findContours(fgmask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_TC89_KCOS)
         #fgmask = cv2.cvtColor(fgmask, cv2.COLOR_GRAY2BGR)
         #rectangulos = [cv2.boundingRect(contour) for contour in contours]
         rectangles = []
